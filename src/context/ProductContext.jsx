@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import api from "../services/config";
 
-export const ProductContext = React.createContext();
+const ProductContext = createContext();
 
 function ProductProvirder({ children }) {
   const [products, setProducts] = useState([]);
@@ -17,7 +17,17 @@ function ProductProvirder({ children }) {
     fetchProducts();
   }, []);
 
-  return <ProductContext.Provider value={products} >{children}</ProductContext>;
+  return (
+    <ProductContext.Provider value={products}>
+      {children}
+    </ProductContext.Provider>
+  );
 }
 
+const useProducts = () => {
+  const products = useContext(ProductContext);
+  return products;
+};
+
 export default ProductProvirder;
+export { useProducts };
