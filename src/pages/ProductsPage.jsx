@@ -1,5 +1,8 @@
 import { useProducts } from "../context/ProductContext";
+//styles
 import styles from "./ProductsPage.module.css";
+//components
+import Card from "../components/Card";
 
 function ProductsPage() {
   const products = useProducts();
@@ -9,7 +12,7 @@ function ProductsPage() {
         {!products.length && <p>Loading...</p>}
 
         {products.map((item) => (
-          <p key={item.id}>{item.title}</p>
+          <Card key={item.id} data={item} />
         ))}
       </div>
       <div>sidebar</div>
