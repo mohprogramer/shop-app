@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductContext";
 //Icons
 import { ImSearch } from "react-icons/im";
@@ -12,7 +12,12 @@ import Loader from "../components/Loader";
 
 function ProductsPage() {
   const products = useProducts();
+  const [displayed, setDisplayed] = useState([]);
   const [search, setSrearch] = useState("");
+
+  useEffect(() => {
+    setDisplayed(products);
+  }, [products]);
 
   const searchHandler = () => {
     console.log("search");
@@ -41,9 +46,9 @@ function ProductsPage() {
       </div>
       <div className={styles.container}>
         <div className={styles.products}>
-          {!products.length && <Loader></Loader>}
+          {!displayed.length && <Loader></Loader>}
 
-          {products.map((item) => (
+          {displayed.map((item) => (
             <Card key={item.id} data={item} />
           ))}
         </div>
