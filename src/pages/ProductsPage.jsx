@@ -6,7 +6,7 @@ import { FaListUl } from "react-icons/fa";
 //components
 import Card from "../components/Card";
 //helpers
-import { searchProducts } from "../helper/helper";
+import { categoryProducts, searchProducts } from "../helper/helper";
 //Loader
 import Loader from "../components/Loader";
 //styles
@@ -24,6 +24,7 @@ function ProductsPage() {
 
   useEffect(() => {
     let filteredProducts = searchProducts(products, query.search)
+    filteredProducts = categoryProducts(filteredProducts, query.category)
     setDisplayed(filteredProducts)
     console.log(filteredProducts)
   }, [query]);

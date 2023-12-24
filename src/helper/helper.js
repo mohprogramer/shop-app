@@ -8,4 +8,10 @@ const searchProducts = (products, search) => {
     return searchedProducts
 }
 
-export {shortenText, searchProducts}
+const categoryProducts = (products, category) => {
+    if (!category) return products
+    const searchedProducts = products.filter((p) => (p.category === category))
+    return searchedProducts
+}
+
+export {shortenText, searchProducts, categoryProducts}
