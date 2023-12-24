@@ -3,12 +3,14 @@ import { useProducts } from "../context/ProductContext";
 //Icons
 import { ImSearch } from "react-icons/im";
 import { FaListUl } from "react-icons/fa";
-//styles
-import styles from "./ProductsPage.module.css";
 //components
 import Card from "../components/Card";
+//helpers
+import { searchProducts } from "../helper/helper";
 //Loader
 import Loader from "../components/Loader";
+//styles
+import styles from "./ProductsPage.module.css";
 
 function ProductsPage() {
   const products = useProducts();
@@ -21,7 +23,9 @@ function ProductsPage() {
   }, [products]);
 
   useEffect(() => {
-    console.log(query);
+    let filteredProducts = searchProducts(products, query.search)
+    setDisplayed(filteredProducts)
+    console.log(filteredProducts)
   }, [query]);
 
   const searchHandler = () => {
