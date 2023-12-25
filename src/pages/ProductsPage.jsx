@@ -10,6 +10,7 @@ import Card from "../components/Card";
 import {
   categoryProducts,
   createQueryObject,
+  getInitialQuery,
   searchProducts,
 } from "../helper/helper";
 //Loader
@@ -20,17 +21,19 @@ import styles from "./ProductsPage.module.css";
 function ProductsPage() {
   const products = useProducts();
   const [displayed, setDisplayed] = useState([]);
-  const [search, setSrearch] = useState("");
+  const [search, setSearch] = useState("");
   const [query, setQuery] = useState({});
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setDisplayed(products);
+    setQuery(getInitialQuery(searchParams))
   }, [products]);
 
   useEffect(() => {
     setSearchParams(query);
+    setSearch(query.search || "")
     let filteredProducts = searchProducts(products, query.search);
     filteredProducts = categoryProducts(filteredProducts, query.category);
     setDisplayed(filteredProducts);
@@ -56,7 +59,7 @@ function ProductsPage() {
           type="text"
           placeholder="Search..."
           value={search}
-          onChange={(e) => setSrearch(e.target.value.toLowerCase().trim())}
+          onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
         />
         <button onClick={searchHandler}>
           <ImSearch />
