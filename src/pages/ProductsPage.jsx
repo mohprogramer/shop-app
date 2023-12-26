@@ -23,17 +23,18 @@ function ProductsPage() {
   const [displayed, setDisplayed] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState({});
+  const [start, newStart] = useState("")
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setDisplayed(products);
-    setQuery(getInitialQuery(searchParams))
+    setQuery(getInitialQuery(searchParams));
   }, [products]);
 
   useEffect(() => {
     setSearchParams(query);
-    setSearch(query.search || "")
+    setSearch(query.search || "");
     let filteredProducts = searchProducts(products, query.search);
     filteredProducts = categoryProducts(filteredProducts, query.category);
     setDisplayed(filteredProducts);
