@@ -1,6 +1,8 @@
 import { createQueryObject } from "../helper/helper";
 import { FaListUl } from "react-icons/fa";
 
+//styles
+import styles from "./SideBar.module.css";
 
 function SideBar({ setQuery }) {
   const categoryHandler = (e) => {
@@ -12,7 +14,7 @@ function SideBar({ setQuery }) {
   };
 
   return (
-    <div>
+    <div className={styles.sidebar} >
       <div>
         <FaListUl />
         <p>Caregories</p>

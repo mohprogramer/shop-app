@@ -6,7 +6,6 @@ import Card from "../components/Card";
 //helpers
 import {
   categoryProducts,
-  createQueryObject,
   getInitialQuery,
   searchProducts,
 } from "../helper/helper";
