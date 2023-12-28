@@ -1,16 +1,11 @@
 import { createQueryObject } from "../helper/helper";
 import { FaListUl } from "react-icons/fa";
 
+//constants
+import { categories } from "../constants/list";
 //styles
 import styles from "./SideBar.module.css";
 
-const categories = [
-  { id: 1, type: "All" },
-  { id: 2, type: "Electronics" },
-  { id: 3, type: "Jewelery" },
-  { id: 4, type: "Men's Clothing" },
-  { id: 5, type: "Women's Clothing" },
-];
 
 function SideBar({ setQuery, query }) {
   const categoryHandler = (e) => {
