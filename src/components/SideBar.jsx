@@ -6,7 +6,6 @@ import { categories } from "../constants/list";
 //styles
 import styles from "./SideBar.module.css";
 
-
 function SideBar({ setQuery, query }) {
   const categoryHandler = (e) => {
     const { tagName } = e.target;

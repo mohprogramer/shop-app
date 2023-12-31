@@ -2,7 +2,12 @@ import { createContext, useContext, useReducer } from "react";
 
 const CartContext = createContext();
 
-const initialState = {};
+const initialState = {
+  selectedItems: [],
+  itemsCounter: 0,
+  total: 0,
+  checkout: false,
+};
 const reducer = () => {};
 
 function CartProvider({ children }) {
