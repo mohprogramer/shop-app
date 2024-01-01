@@ -17,15 +17,26 @@ const reducer = (state, action) => {
       return {
         ...state,
         ...sumProducts(state.selectedItems),
-        checkout: false
+        checkout: false,
       };
     case "REMOVE_ITEM":
-        const newSelectedItems = state.selectedItems.filter(item => item.id !== action.payload.id)
-        return{
-          ...state,
-          selectedItems: [...newSelectedItems],
-          ...sumProducts(newSelectedItems)
-        }
+      const newSelectedItems = state.selectedItems.filter(
+        (item) => item.id !== action.payload.id
+      );
+      return {
+        ...state,
+        selectedItems: [...newSelectedItems],
+        ...sumProducts(newSelectedItems),
+      };
+    case "INCREASE":
+      const index = state.selectedItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.selectedItems[index].quantity++;
+      return {
+        ...state,
+        ...sumProducts(state.selectedItems),
+      };
 
     default:
       throw new Error("Invalid Action");
