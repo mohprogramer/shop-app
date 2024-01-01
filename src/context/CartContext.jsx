@@ -29,15 +29,30 @@ const reducer = (state, action) => {
         ...sumProducts(newSelectedItems),
       };
     case "INCREASE":
-      const index = state.selectedItems.findIndex(
+      const increaseIndex = state.selectedItems.findIndex(
         (item) => item.id === action.payload.id
       );
-      state.selectedItems[index].quantity++;
+      state.selectedItems[increaseIndex].quantity++;
       return {
         ...state,
         ...sumProducts(state.selectedItems),
       };
-
+    case "DECREASE":
+      const decreaseIndex = state.selectedItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.selectedItems[decreaseIndex].quantity--;
+      return {
+        ...state,
+        ...sumProducts(state.selectedItems),
+      };
+    case "CHECKOUT":
+      return {
+        selectedItems: [],
+        itemsCounter: 0,
+        total: 0,
+        checkout: true,
+      };
     default:
       throw new Error("Invalid Action");
   }
