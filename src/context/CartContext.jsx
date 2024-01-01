@@ -15,10 +15,18 @@ const reducer = (state, action) => {
         state.selectedItems.push({ ...action.payload, quantity: 1 });
       }
       return {
-        selectedItems: [...state.selectedItems],
+        ...state,
         ...sumProducts(state.selectedItems),
         checkout: false
       };
+    case "REMOVE_ITEM":
+        const newSelectedItems = state.selectedItems.filter(item => item.id !== action.payload.id)
+        return{
+          ...state,
+          selectedItems: [...newSelectedItems],
+          ...sumProducts(newSelectedItems)
+        }
+
     default:
       throw new Error("Invalid Action");
   }
