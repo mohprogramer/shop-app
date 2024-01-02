@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 //Icons
 import { TbListDetails } from "react-icons/tb";
 import { TbShoppingBagCheck } from "react-icons/tb";
+import { MdDeleteOutline } from "react-icons/md";
 //helpers
 import { shortenText } from "../helper/helper";
 //styles
@@ -11,9 +12,9 @@ import { useCart } from "../context/CartContext";
 function Card({ data }) {
   const { id, image, title, price } = data;
   const [state, dispatch] = useCart();
-  const clickHandler = () => {
-    dispatch({ type: "REMOVE_ITEM", payload: data });
-    console.log(state)
+  console.log(state);
+  const clickHandler = (type) => {
+    dispatch({ type, payload: data });
   };
 
   return (
@@ -26,9 +27,14 @@ function Card({ data }) {
           <TbListDetails />
         </Link>
         <div>
-          <button onClick={clickHandler}>
+          <button onClick={() => clickHandler("ADD_ITEM")}>
             <TbShoppingBagCheck />
           </button>
+          <button onClick={() => clickHandler("REMOVE_ITEM")}>
+            <MdDeleteOutline />
+          </button>
+          <button onClick={() => clickHandler("INCREASE")}>+</button>
+          <button onClick={() => clickHandler("DECREASE")}>-</button>
         </div>
       </div>
     </div>
