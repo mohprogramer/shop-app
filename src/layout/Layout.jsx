@@ -4,19 +4,23 @@ import { PiShoppingCartSimpleBold } from "react-icons/pi";
 
 import { useCart } from "../context/CartContext";
 
+import styles from "./Layout.module.css";
+
 function Layout({ children }) {
-    const [state] = useCart()
+  const [state] = useCart();
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <Link to="/products">LOGO</Link>
         <Link to="/checkout">
-          <PiShoppingCartSimpleBold />
-          {!!state.itemsCounter && <span>{state.itemsCounter}</span>}
+          <div>
+            <PiShoppingCartSimpleBold />
+            {!!state.itemsCounter && <span>{state.itemsCounter}</span>}
+          </div>
         </Link>
       </header>
       {children}
-      <footer>Developed by mohammad with ❤</footer>
+      <footer className={styles.footer}>Developed by mohammad with ❤️</footer>
     </>
   );
 }
