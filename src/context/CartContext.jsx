@@ -3,8 +3,8 @@ import { sumProducts } from "../helper/helper";
 const CartContext = createContext();
 
 const initialState = {
-  selectedItems: [],
   itemsCounter: 0,
+  selectedItems: [],
   total: 0,
   checkout: false,
 };
