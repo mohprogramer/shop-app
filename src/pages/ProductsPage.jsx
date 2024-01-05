@@ -43,7 +43,7 @@ function ProductsPage() {
       <SearchBox search={search} setSearch={setSearch} setQuery={setQuery} />
       <div className={styles.container}>
         <div className={styles.products}>
-          {!displayed.length && <Loader></Loader>}
+          {!displayed.length && <Loader/>}
 
           {displayed.map((item) => (
             <Card key={item.id} data={item} />
