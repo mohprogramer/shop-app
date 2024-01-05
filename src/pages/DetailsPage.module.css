@@ -19,6 +19,7 @@
     width: 100%;
     border: 2px dashed #e2e2e2;
     margin: 10px;
+    padding: 25px; 
     border-radius: 50px;
 }
 
