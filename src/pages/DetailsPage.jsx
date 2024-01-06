@@ -13,22 +13,23 @@ function DetailsPage() {
   const { id } = useParams();
 
   const productDetails = useProductsDetails(+id);
+  const { image, title, description, category, price } = productDetails;
 
   if (!productDetails) return <Loader />;
 
   return (
-    <div className={styles.container} >
-      <img src={productDetails.image} alt={productDetails.title} />
-      <div className={styles.information} >
-        <h3 className={styles.title} >{productDetails.title}</h3>
-        <p className={styles.description} >{productDetails.description}</p>
-        <p className={styles.category} >
-          <SiOpenproject /> {productDetails.category}
+    <div className={styles.container}>
+      <img src={image} alt={title} />
+      <div className={styles.information}>
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.description}>{description}</p>
+        <p className={styles.category}>
+          <SiOpenproject /> {category}
         </p>
         <div>
-          <span className={styles.price} >
+          <span className={styles.price}>
             <IoMdPricetag />
-            {productDetails.price} $
+            {price} $
           </span>
           <Link to="/products">
             <FaArrowLeft />
