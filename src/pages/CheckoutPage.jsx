@@ -12,7 +12,7 @@ function CheckoutPage() {
   if (!state.itemsCounter) {
     return (
       <div className={styles.container} >
-        <p>Khali</p>
+        <p>Back to shop</p>
       </div>
     );
   }
